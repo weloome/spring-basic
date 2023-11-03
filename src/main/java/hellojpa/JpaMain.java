@@ -21,13 +21,12 @@ public class JpaMain {
             // 팀 저장
             Team team = new Team();
             team.setName("TeamA");
-//            team.addMember(member); // 주인이 아닌곳에 값 설정
             em.persist(team);
 
             // 회원 저장
             Member member = new Member();
             member.setName("member1");
-            member.setTeam(team); // 연관관계의 주인에 값 설정
+            member.setTeam(team);
             em.persist(member);
 
             em.flush();
@@ -35,11 +34,7 @@ public class JpaMain {
 
             // 조회
             Member findMember = em.find(Member.class, member.getId());
-            List<Member> members = findMember.getTeam().getMembers();
-
-            for (Member m : members) {
-                System.out.println("m = " + m.getName());
-            }
+            System.out.println("m = " + findMember.getTeam().getClass());
 
             tx.commit();
         } catch (Exception e) {
