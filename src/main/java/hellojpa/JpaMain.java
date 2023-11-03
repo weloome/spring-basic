@@ -21,12 +21,13 @@ public class JpaMain {
             // 팀 저장
             Team team = new Team();
             team.setName("TeamA");
+//            team.addMember(member); // 주인이 아닌곳에 값 설정
             em.persist(team);
 
             // 회원 저장
             Member member = new Member();
             member.setName("member1");
-            member.setTeam(team);
+            member.setTeam(team); // 연관관계의 주인에 값 설정
             em.persist(member);
 
             em.flush();
