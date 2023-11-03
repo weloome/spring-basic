@@ -2,7 +2,10 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.locks.Lock;
 
 @Entity
 public class Member {
@@ -13,8 +16,12 @@ public class Member {
     @Column(name = "username")
     private String name;
     @ManyToOne
-    @JoinColumn(name = "team_id")
+    @JoinColumn(name = "team_id", unique = true)
     private Team team;
+
+    @OneToOne
+    @JoinColumn(name = "locker_id")
+    private Locker locker;
 
     public Long getId() {
         return id;
