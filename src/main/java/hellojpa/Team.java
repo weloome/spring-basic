@@ -1,19 +1,16 @@
 package hellojpa;
 
-import jakarta.persistence.*;
-
-import java.util.Date;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 @Entity
-public class Member {
-
+public class Team {
     @Id @GeneratedValue
-    @Column(name = "member_id")
-    private Long id;
-    @Column(name = "username")
-    private String name;
     @Column(name = "team_id")
-    private Long teamId;
+    private Long id;
+    private String name;
 
     public Long getId() {
         return id;
@@ -29,13 +26,5 @@ public class Member {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
     }
 }

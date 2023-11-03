@@ -16,12 +16,19 @@ public class JpaMain {
         tx.begin();
 
         try {
-            // 1차 캐시
-            Member findMember1 = em.find(Member.class, 101L);
-            Member findMember2 = em.find(Member.class, 101L);
 
-            // 영속 엔티티 동일성 보장
-            System.out.println("result = " + (findMember1 == findMember2)); // true
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
+            Member member = new Member();
+            member.setName("member1");
+            member.setTeamId(team.getId());
+            em.persist(member);
+
+            Member findMember = em.find(Member.class, member.getId());
+            Long findTeamId = findMember.getTeamId();
+            Team findTeam = em.find(Team.class, findTeamId);
 
             tx.commit();
         } catch (Exception e) {
